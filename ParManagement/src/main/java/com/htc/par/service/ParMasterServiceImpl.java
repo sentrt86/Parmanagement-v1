@@ -36,6 +36,7 @@ public class ParMasterServiceImpl  implements IParMasterService{
 		String url = parServiceApiUrl + "/parmaster/createParMaster";
 		HttpEntity<ParMaster> request = new HttpEntity<>(parmaster);
 		try {
+			System.out.println("par master first service");
 			ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST,request, new ParameterizedTypeReference<String>() {});
 			return response.getBody();
 		}catch(HttpStatusCodeException e) {
@@ -50,6 +51,7 @@ public class ParMasterServiceImpl  implements IParMasterService{
 	public String updateIntentToFill(ParMaster parmaster) throws Exception {
 		ResponseException responseException = null;	
 		parmaster.setIntentToFill(parmaster.getIntentToFill().equalsIgnoreCase("Yes") ? "true" : "false");
+		parmaster.setIntentToFill(parmaster.getEmailSent().equalsIgnoreCase("Yes") ? "true" : "false");
 		String url = parServiceApiUrl + "/parmaster/updateIntentToFill";
 		HttpEntity<ParMaster> request = new HttpEntity<>(parmaster);
 		try {
@@ -95,6 +97,24 @@ public class ParMasterServiceImpl  implements IParMasterService{
 			throw new Exception(responseException.getMessage());
 
 		}
+	}
+
+	@Override
+	public boolean updateEmailRecruiters(ParMaster parmaster) throws Exception {
+		ResponseException responseException = null;	
+		parmaster.setIntentToFill(parmaster.getIntentToFill().equalsIgnoreCase("Yes") ? "true" : "false");
+		parmaster.setEmailSent(parmaster.getEmailSent().equalsIgnoreCase("Yes") ? "true" : "false");
+		String url = parServiceApiUrl + "/parmaster/updateEmailRecruiters";
+		HttpEntity<ParMaster> request = new HttpEntity<>(parmaster);
+		try {
+			System.out.println("Update email recruiters in parmaster service method");
+			ResponseEntity<Boolean> response = restTemplate.exchange(url, HttpMethod.POST, request, new ParameterizedTypeReference<Boolean>() {});
+			return response.getBody();
+		}catch(HttpStatusCodeException e) {
+			ObjectMapper mapper = new ObjectMapper();		
+			responseException = mapper.readValue(e.getResponseBodyAsString(),ResponseException.class);
+			throw new Exception(responseException.getMessage());
+			}
 	}
 
 }

@@ -40,7 +40,7 @@ $(document).ready(function() {
 		alert(isValid);
 		if (isValid)
 		{
-			var parId = $('[name="parId"]').val();
+			var parId = $('[name="parId"]').val();	
 			var parNo = $('[name="parNo"]').val();
 			var parDescriptionText = $('[name="parDescription"]').val();
 			var parReceivedDate = $('[name="parDateReceived"]').val();	

@@ -44,6 +44,7 @@
 		  </button>
 		  <div class="dropdown-container">
 		    <a href="./parentry">PAR Entry</a>
+		    <a href="./paredit">PAR Edit</a>
 		    <a href="./emailrecruiters">Email Recruiters</a>
 		    <a href="./intenttofill">Intent to Fill</a>
 		    <a href="./candidatereceived">Candidate Received</a>

@@ -14,5 +14,6 @@ public interface IParMasterService {
 	public String updateIntentToFill(ParMaster parmaster) throws Exception;
 	public int  getNextParSeqId() throws Exception;
 	public List<ParMaster> getParMasterByParNum(String parNum) throws ResourceNotFoundException,Exception;
+	public boolean updateEmailRecruiters(ParMaster parmaster)throws Exception;
 
 }

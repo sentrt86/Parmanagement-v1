@@ -71,16 +71,7 @@ public class ParMasterController {
 
 	}
 
-	// Request handler for email recruiters form
-
-	@RequestMapping(value="/emailrecruiters", method=RequestMethod.GET)
-	public ModelAndView emailRecruiters(Locale locale,Model model) throws Exception {
-		ModelAndView modelView  = new ModelAndView();
-		modelView.addObject("username",HomeController.username);
-		modelView.setViewName("emailrecruiters");
-		return modelView;
-
-	}
+	
 
 	// Request handler for intent to fill form
 
@@ -106,15 +97,9 @@ public class ParMasterController {
 
 
 
-	// Request handler for prescreener form
-
-	@RequestMapping(value="/prescreening", method=RequestMethod.GET) 
-	public ModelAndView prescreening(Locale locale,Model model)  throws Exception{ 		
-		ModelAndView  modelView = new ModelAndView();
-		modelView.addObject("username",HomeController.username);
-		modelView.setViewName("prescreening"); 
-		return modelView;
-	}
+	
+	  
+	 
 
 
 	// Request handler for prescreener result Form

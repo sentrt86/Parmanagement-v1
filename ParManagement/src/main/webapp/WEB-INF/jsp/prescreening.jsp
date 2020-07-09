@@ -44,7 +44,7 @@
 				<div>
 			    	<h1 class="screen-title">Prescreening</h1>
 			    </div>
-				<form class="form-top">
+				<form class="form-top" id="getParDetailsForm">
 				  <div class="row">
 				    <div class="col col-sm-4">
 				      <div class="form-inline">
@@ -60,13 +60,13 @@
 				    <div class="col">
 				      <div class="form-group">
 				      	<label class="form-control-label mr-sm-2" for="inputSuccess2">Par Received Date</label>
-				      	<input type="date" class="form-control mb-6 mr-sm-2" name="parDateReceived" id="inputSuccess2" required placeholder="Date Received" readonly>
+				      	<input type="date" class="form-control mb-6 mr-sm-2" name="parDateReceived" id="inputSuccess2" required placeholder="Date Received" readonly value="${parmaster.parReceivedDate}">
 				      </div>
 				    </div>
 				    <div class="col">
 				      <div class="form-group">
 				       	 	<label class="form-control-label mr-sm-2" for="inputSuccess3">External Staff</label>
-					        <input type="text" class="form-control mb-6 mr-sm-2" name="extStaffName" id="inputSuccess3"  placeholder="External Staff" readonly>
+					        <input type="text" class="form-control mb-6 mr-sm-2" name="extStaffName" id="inputSuccess3"  placeholder="External Staff" readonly value="${parmaster.externalStaff.extStaffName}">
 					  </div>
 				    </div>
 				  </div>
@@ -74,17 +74,19 @@
 				     <div class="col">
 				      <div class="form-group">
 				      		<label class="form-control-label" for="inputSuccess4">Role</label>
-				      		<input type="text" class="form-control mb-6 mr-sm-2" name="parRole" id="inputSuccess4"  placeholder="Role" readonly>
+				      		<input type="text" class="form-control mb-6 mr-sm-2" name="parRole" id="inputSuccess4"  placeholder="Role" readonly value="${parmaster.parRole.roleName}">
 					  </div>
 				    </div>
 				    <div class="col">
 				       <div class="form-group">
 				       		<label class="form-control-label" for="inputSuccess5">Skill</label>
-				       		<input type="text" class="form-control mb-6 mr-sm-2" name="skill" id="inputSuccess5"  placeholder="Skill" readonly>
+				       		<input type="text" class="form-control mb-6 mr-sm-2" name="skill" id="inputSuccess5"  placeholder="Skill" readonly value="${parmaster.skill.skillName}">
 					   </div>
 				    </div>
 				  </div>
 				</form>
+				
+				
 				
 				<div class="tablediv">
 			    	<table id="prescreeningTable" class="table table-striped table-bordered" style="width:100%">
@@ -93,141 +95,101 @@
 					             <th>Candidate Name</th>
 					             <th>Prescreener Name</th>
 					             <th>Prescreening Date</th>
+					             <th>Prescreener Comment</th>
 					             <th>Action</th>
 					         </tr>
 					     </thead>
-					     <tbody>
-					     	<%-- <c:forEach var="candidate" items="${allParCandidatesList}">
-					     		<tr>
-					     			<td>${candidate.candidateName}</td>
-					     			<td>${candidate.recruiterName}</td>
-					     			<td>${candidate.dateReceived}</td>
-					     			<td>
-					     				<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     			</td>
-					     		</tr>        		
-					     	</c:forEach> --%>
-					     	<tr>
-					     		<td> Anu </td>
-					     		<td> Raja </td>
-					     		<td> 01/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Mike </td>
-					     		<td> Raja </td>
-					     		<td> 02/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Raju </td>
-					     		<td> Raja </td>
-					     		<td> 03/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Deepika </td>
-					     		<td> Raja </td>
-					     		<td> 04/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Amanda </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Amanda </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Amanda </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Karthi </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Magesh </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Menon </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Balraj </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	<tr>
-					     		<td> Ram </td>
-					     		<td> Raja </td>
-					     		<td> 05/20/2020 </td>
-					     		<td>
-					     			<button type="button" class="btn btnCandidateEdit btn-link" id="candidateTableEdit-btn">Edit</button>/
-					     				<button type="button" class="btn btnCandidateDelete btn-link" id="candidateTableDelete-btn">Delete</button>
-					     		</td>
-					     	</tr>
-					     	
-					     </tbody>
+					     <tfoot>
+					         <tr>
+					             <th>Candidate Name</th>
+					             <th>Prescreener Name</th>
+					             <th>Prescreening Date</th>
+					             <th>Prescreener Comment</th>
+					             <th>Action</th>
+					         </tr>
+					     </tfoot>
 					</table>
 			   </div>
 			</div>
+			
 			<footer class="footer">
 				<span>Copyright &copy; 2020 HTC GLOBAL SERVICES All rights reserved.</span>
 			</footer>
 			
-		
+			<!-- Edit Prescreener Message Modal -->
+			<div class="modal fade" id="prescreeningEditModal" tabindex="-1"
+				role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="confirmModalLabel">Edit / Delete Candidate Prescreening</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form class="container" novalidate=""  id="prescreeningForm">
+							    <div class="form-group">
+							        <label class="form-control-label" >Candidate Name</label>
+							        <input type="text" class="form-control" name="candidateNameModal" id="candidateNameModal" readonly>
+							    </div>
+							 
+								<div class="input-group mb-3 form-group">
+								  <select class="custom-select" id="inputSuccess1" name="preScreenersNameModal" for="inputSuccess1"><option selected="selected" value="">Select the Prescreener</option>
+								  </select>
+								  <div class="valid-feedback">Success!</div>
+				       			   <div class="invalid-feedback">Please Select the PrescreenerName</div>
+								</div>
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess2" >Prescreening Date</label>
+							        <input type="Date" class="form-control"  name="preScreeningDateModal"  id="inputSuccess2" >
+							        <div class="valid-feedback">Success!</div>
+				       			    <div class="invalid-feedback">Please Select the Prescreener</div>
+								 </div>
+							    <div class="form-group">
+							        <label class="form-control-label" for="inputSuccess3" >Prescreener Comment</label>
+							        <textarea class="form-control"  name="preScreeningCommentModal"  id="inputSuccess3"></textarea>   
+							    </div>
+							
+								 <div class="modal-footer">
+									<button type="button" class="btn btn-primary" id="prescreenerModalEdit-btn">Save</button>
+									<button type="button" class="btn btn-primary cancel"
+											data-dismiss="modal">Cancel</button>
+									<input type="hidden" id="prescreeningModalProcess"/>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>	
+			
+			<!-- Delete Area Message Modal -->
+			<div class="modal fade" id="prescreeningDeleteconfirmModal" tabindex="-1"
+				role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="confirmModalLabel">Delete
+								Confirmation</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<p id="prescreeningDeleteconfirmModalBody"></p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" id="prescreeningModalDelete-btn">Delete</button>
+							<button type="button" class="btn btn-primary cancel"
+								data-dismiss="modal">Cancel</button>
+							<input type="hidden" id="prescreeningModalDeleteparAllocId"/>
+						</div>
+					</div>
+				</div>
+			</div>	
 			
 			<!-- Message Modal -->
 			<jsp:include page="Message.jsp" />
-	</body>
+			
+		</body>
 	</html>
